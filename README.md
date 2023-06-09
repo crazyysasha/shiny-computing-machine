@@ -1,35 +1,29 @@
-# shiny-computing-machine
-vue js
+# kozzie_vue
 
+This template should help get you started developing with Vue 3 in Vite.
 
-## Project creation
-```
-npm create vite@latest .
-```
-### next install vite modules
-```
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
 npm install
 ```
 
+### Compile and Hot-Reload for Development
 
-### if you want to use tailwindcss
-```
-npm install -D tailwindcss postcss autoprefixer
-```
-
-
-### and generate your tailwind.config.js and postcss.config.js config files:
-```
-npx tailwindcss init -p --full
-```
-
-
-## Compiles and hot-reloads for development
-```
+```sh
 npm run dev
 ```
 
-## Compiles and minifies for production
-```
+### Compile and Minify for Production
+
+```sh
 npm run build
 ```
