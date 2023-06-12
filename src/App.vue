@@ -1,34 +1,48 @@
 <script setup>
 import { ref } from 'vue';
-import CHeader from './components/CHeader.vue';
-import CList from "./components/CList.vue"
 
-const users = ref(['Tima', 'Zafar', 'Nigina', 'Roma']);
 
-const newUser = ref('');
 
-const addUser = () => {
-  if (newUser.value == '') {
-    alert("vvedite imya");
-    return;
-  }
-  users.value.push(newUser.value);
-  newUser.value = "";
+const todos = ref(JSON.parse(localStorage.getItem('todos')) ?? []);
+
+const newTodo = ref();
+
+const createTodo = () => {
+
+  todos.value.push({ name: newTodo.value, isCompleted: false });
+  localStorage.setItem('todos', JSON.stringify(todos.value));
+  newTodo.value = '';
+}
+
+const onCompleted = (todoIndex) => {
+  todos.value[todoIndex].isCompleted = true;
+  
+  localStorage.setItem('todos', JSON.stringify(todos.value));
+}
+
+const deleteTodo = (todoIndex) => {
+  todos.value.splice(todoIndex, 1);
+  // delete todos.value[todoIndex];
+  localStorage.setItem('todos', JSON.stringify(todos.value));
 }
 </script>
 
 <template>
-  <CHeader></CHeader>
-  <div class="text-center">
-    app
-  </div>
-
-  <CList v-bind:users="users"></CList>
-  <form @:submit.prevent="addUser">
-    {{ newUser }}
-    <input type="text" name="user_name" v-model="newUser" >
-    <button class="p-2 px-5 bg-green-500 disabled:bg-slate-400" :disabled="newUser.length == 0">
-      add user
+  <ul>
+    <li v-for="{ name, isCompleted }, index in todos" :class="{ 'line-through': isCompleted }">
+      {{ index + 1 }} {{ name }}
+      <button v-if="!isCompleted" @:click="onCompleted(index)">
+        complete
+      </button>
+      <button @:click="deleteTodo(index)">
+        delete
+      </button>
+    </li>
+  </ul>
+  <form @:submit.prevent="createTodo">
+    <input type="text" name="" id="" v-model="newTodo">
+    <button>
+      add todo
     </button>
   </form>
 </template>
