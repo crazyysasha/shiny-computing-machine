@@ -1,11 +1,8 @@
 <script setup>
-defineProps({
-    isAuthed: {
-        type: Boolean,
-        default: false,
-        required: true,
-    }
-});
+import { useAuth } from '../composables/auth';
+
+
+const { isAuthed } = useAuth();
 </script>
 <template>
     <header>

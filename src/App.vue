@@ -1,22 +1,14 @@
 <script setup>
 import CHeader from './components/CHeader.vue';
 import CAuth from "./components/CAuth.vue";
-import { ref } from 'vue';
+import { useAuth } from './composables/auth';
 
-const isAuthed = ref(false);
 
-const onLogin = (email, password) => {
-  
-  if (email == 'admin@loc.test' && password == 'pass') {
-    isAuthed.value = true;
-    return;
-  }
-  alert("введенные данные неверны!");
-}
+const { isAuthed } = useAuth();
 </script>
 
 <template>
-  <CHeader v-bind:isAuthed="isAuthed"></CHeader>
-  <CAuth v-if="!isAuthed" @on-login="onLogin"></CAuth>
+  <CHeader></CHeader>
+  <CAuth v-if="!isAuthed"></CAuth>
   <p v-else>welcome</p>
 </template>

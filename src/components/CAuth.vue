@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from 'vue';
+import { useAuth } from '../composables/auth';
 
-const emit = defineEmits(['on-login']);
+const { onLogin } = useAuth();
 
 const onSubmit = () => {
     console.log(email.value, password.value);
-    emit('on-login', email.value, password.value);
+    onLogin(email.value, password.value);
 }
 const email = ref('');
 const password = ref('');
