@@ -1,48 +1,22 @@
 <script setup>
+import CHeader from './components/CHeader.vue';
+import CAuth from "./components/CAuth.vue";
 import { ref } from 'vue';
 
+const isAuthed = ref(false);
 
-
-const todos = ref(JSON.parse(localStorage.getItem('todos')) ?? []);
-
-const newTodo = ref();
-
-const createTodo = () => {
-
-  todos.value.push({ name: newTodo.value, isCompleted: false });
-  localStorage.setItem('todos', JSON.stringify(todos.value));
-  newTodo.value = '';
-}
-
-const onCompleted = (todoIndex) => {
-  todos.value[todoIndex].isCompleted = true;
+const onLogin = (email, password) => {
   
-  localStorage.setItem('todos', JSON.stringify(todos.value));
-}
-
-const deleteTodo = (todoIndex) => {
-  todos.value.splice(todoIndex, 1);
-  // delete todos.value[todoIndex];
-  localStorage.setItem('todos', JSON.stringify(todos.value));
+  if (email == 'admin@loc.test' && password == 'pass') {
+    isAuthed.value = true;
+    return;
+  }
+  alert("введенные данные неверны!");
 }
 </script>
 
 <template>
-  <ul>
-    <li v-for="{ name, isCompleted }, index in todos" :class="{ 'line-through': isCompleted }">
-      {{ index + 1 }} {{ name }}
-      <button v-if="!isCompleted" @:click="onCompleted(index)">
-        complete
-      </button>
-      <button @:click="deleteTodo(index)">
-        delete
-      </button>
-    </li>
-  </ul>
-  <form @:submit.prevent="createTodo">
-    <input type="text" name="" id="" v-model="newTodo">
-    <button>
-      add todo
-    </button>
-  </form>
+  <CHeader v-bind:isAuthed="isAuthed"></CHeader>
+  <CAuth v-if="!isAuthed" @on-login="onLogin"></CAuth>
+  <p v-else>welcome</p>
 </template>
