@@ -12,8 +12,13 @@ const onLogin = (email, password) => {
     alert("введенные данные неверны!");
 }
 
+const onLogout = () => {
+    isAuthed.value = false;
+    
+}
+
 export function useAuth() {
     return {
-        isAuthed, onLogin,
+        isAuthed, onLogin,onLogout
     }
 }
