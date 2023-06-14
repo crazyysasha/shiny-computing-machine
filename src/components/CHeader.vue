@@ -8,7 +8,8 @@ const { isAuthed } = useAuth();
     <header>
         <a href="">logo</a>
         <nav>
-            <a href="">home</a>
+            <router-link to="/">home</router-link>
+            <router-link to="/login" v-if="!isAuthed">login</router-link>
             <a href="" v-if="isAuthed">profile</a>
         </nav>
     </header>
