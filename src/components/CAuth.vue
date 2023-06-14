@@ -8,6 +8,7 @@ const onSubmit = () => {
     console.log(email.value, password.value);
     onLogin(email.value, password.value);
 }
+
 const email = ref('');
 const password = ref('');
 
