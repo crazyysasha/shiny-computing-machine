@@ -6,6 +6,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 
 import Home from './pages/Home.vue';
 import Login from './pages/Login.vue'
+import Todos from './todo_app/Todos.vue'
 import { useAuth } from './composables/auth';
 
 const router = createRouter({
@@ -24,6 +25,10 @@ const router = createRouter({
             path: '/login',
             component: Login,
         },
+        {
+        path: '/todo',
+        component: Todos,
+        }
     ],
     history: createWebHistory(),
 });

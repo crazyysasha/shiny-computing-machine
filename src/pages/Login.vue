@@ -14,7 +14,7 @@ const router = useRouter();
 
 
 watch(isAuthed, () => {
-    router.push('/');
+    router.push('/todo');
 });
 const email = ref('');
 const password = ref('');
