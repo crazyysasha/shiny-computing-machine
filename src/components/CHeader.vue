@@ -1,5 +1,6 @@
 <script setup>
 import { useAuth } from '../composables/auth';
+import LoginLink from './LoginLink.vue';
 
 
 
@@ -18,9 +19,9 @@ const { isAuthed, onLogout } = useAuth();
             <router-link to="/about">
                 About
             </router-link>
-            <router-link to="/login" v-if="!isAuthed">
-                Login
-            </router-link>
+            <keep-alive>
+                <login-link v-if="!isAuthed"></login-link>
+            </keep-alive>
             <button @click="onLogout">
                 logout
             </button>

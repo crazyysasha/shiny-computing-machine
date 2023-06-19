@@ -11,10 +11,10 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      beforeEnter: (to, from, next) => {
-        if (!isAuthed.value) next({name: 'login'}); 
-        else next();
-      }
+      // beforeEnter: (to, from, next) => {
+      //   if (!isAuthed.value) next({name: 'login'}); 
+      //   else next();
+      // }
     },
     {
       path: '/about',
@@ -28,6 +28,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
+    },
+
+    {
+      path: '/users/:id',
+      component: () => import('../views/UserView.vue'),
     }
   ]
 })
