@@ -15,7 +15,7 @@ onBeforeRouteUpdate((to, from) => {
 
 <template>
   <CHeader />
-
+  
   <RouterView />
 </template>
 

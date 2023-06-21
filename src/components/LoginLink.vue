@@ -1,20 +1,18 @@
 <script setup>
 import { onActivated, ref } from 'vue';
-
- onActivated(() => {
-    console.log('activated');
-
-    count.value = 0;
- });
-
- const count = ref(0);
+import { useCounter } from '../pinia/useCounter';
+const store = useCounter();
+console.log(store);
 </script>
 <template>
-    <router-link to="/login" >
+    <router-link to="/login">
         Login
     </router-link>
 
-    <button @click="count++">
-        {{ count }}
+    <button @click="store.increment">
+        {{ store.count }}
+    </button>
+    <button @click="store.decrement">
+        -
     </button>
 </template>

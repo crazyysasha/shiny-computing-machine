@@ -19,9 +19,9 @@ const { isAuthed, onLogout } = useAuth();
             <router-link to="/about">
                 About
             </router-link>
-            <keep-alive>
-                <login-link v-if="!isAuthed"></login-link>
-            </keep-alive>
+
+            <login-link v-if="!isAuthed"></login-link>
+           
             <button @click="onLogout">
                 logout
             </button>
