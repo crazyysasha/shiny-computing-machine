@@ -1,66 +1,35 @@
 <script setup>
-import { ref, onMounted, onUnmounted, onUpdated, onBeforeUpdate, onErrorCaptured, onRenderTracked, onRenderTriggered, onActivated } from 'vue';
-import { useAuth } from '../composables/auth';
-import { onBeforeRouteUpdate } from 'vue-router';
+import { ref } from 'vue';
+import { useTodosStore } from '../stores/todos';
 
-import { useUsers } from "../composables/users";
-// const { user } = useAuth();
 
-const input = ref();
+const store = useTodosStore();
+const newTodo = ref('');
 
-const name = ref();
-
-const btnclick = () => {
-  console.log(input.value);
-
+const onCreate = () => {
+  store.store(newTodo.value);
 }
-
-onMounted(() => {
-  console.log(input.value);
-});
-
-onUnmounted(() => {
-  console.log("vishel iz glavnoy");
-});
-
-onUpdated(() => {
-  console.log('updated');
-});
-onBeforeUpdate(() => {
-  console.log('before update');
-});
-
-onErrorCaptured((err, instance, info) => {
-  console.log("nasha oshibka", info);
-});
-onRenderTracked((event) => {
-  console.log(event);
-});
-
-onRenderTriggered((event) => {
-  console.log(event);
-})
-
-onActivated(() => {
-  console.log('activated');
-});
-
-const { users } = useUsers();
 
 
 </script>
 
 <template>
-  <!-- <main>
-    welcome, {{ user.name }}
-  </main> -->
-  <!-- <input type="text" ref="input" v-model="name">
-  <button @click="btnclick">d</button>
-  {{ name }} -->
-
-  <ul>
-    <li v-for="{ id, name } in  users">
-      <router-link :to="'/users/' + id">{{ name }}</router-link>
-    </li>
-  </ul>
+  <main>
+    <ul v-if="store.todos.length">
+      <li v-for="todo in  store.todos" :class="{ 'line-through': todo.isCompleted }">
+        {{ todo.text }}
+        <button @click="store.destroy(todo.id)">delete</button>
+        <button @click="store.toggle(todo.id)">
+          {{ todo.isCompleted ? 'uncomplete' : 'complete' }}
+        </button>
+      </li>
+    </ul>
+    <p v-else>
+      todos not found
+    </p>
+    <form @submit.prevent="onCreate">
+      <input type="text" id="" v-model="newTodo">
+      <button>create</button>
+    </form>
+  </main>
 </template>
