@@ -1,13 +1,17 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import CHeader from './components/site/CHeader.vue';
+import { useSystemStore } from './stores/system';
 
+const systemStore = useSystemStore();
 </script>
 
 <template>
-  <header>
-  </header>
+  <div :class="{ dark: systemStore.isDarkTheme }">
+    <CHeader />
 
-  <RouterView />
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>

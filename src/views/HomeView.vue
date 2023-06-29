@@ -14,7 +14,7 @@ const onCreate = () => {
 </script>
 
 <template>
-  <main>
+  <main class="dark:bg-slate-950">
     <ul v-if="store.todos.length">
       <li v-for="todo in  store.todos" :class="{ 'line-through': todo.isCompleted }">
         {{ todo.text }}
