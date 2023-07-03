@@ -1,12 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import CHeader from './compoments/site/CHeader.vue';
+import ToggleItem from './compoments/site/ToggleItem.vue';
 
 </script>
 
 <template>
   <CHeader></CHeader>
-
+  <ToggleItem />
   <RouterView />
 </template>
 
