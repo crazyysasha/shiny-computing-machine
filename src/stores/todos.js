@@ -7,11 +7,11 @@ export const useTodosStore = defineStore('todos', () => {
 
     const id = ref(0);
 
-    function store(text) {
+    function store(text, isCompleted) {
         todos.value.push({
             id: id.value++,
             text,
-            isCompleted: false
+            isCompleted,
         });
     }
 

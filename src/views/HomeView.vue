@@ -1,13 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import { useTodosStore } from '../stores/todos';
+import CSwitch from '../compoments/CSwitch.vue';
 
 
 const store = useTodosStore();
 const newTodo = ref('');
-
+const newIsCompleted = ref(false);
 const onCreate = () => {
-  store.store(newTodo.value);
+  store.store(newTodo.value, newIsCompleted.value);
 }
 
 
@@ -29,7 +30,10 @@ const onCreate = () => {
     </p>
     <form @submit.prevent="onCreate">
       <input type="text" id="" v-model="newTodo">
+      <CSwitch v-model="newIsCompleted" selected-label="is finished" unselected-label="is not finished"></CSwitch>
       <button>create</button>
     </form>
+
+
   </main>
 </template>
