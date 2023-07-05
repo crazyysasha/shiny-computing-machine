@@ -1,12 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import CHeader from './compoments/site/CHeader.vue';
+import PSW from './compoments/PSW.vue'
 
 </script>
 
 <template>
   <CHeader></CHeader>
-
+  <PSW />
   <RouterView />
 </template>
 
