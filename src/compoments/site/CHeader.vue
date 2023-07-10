@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import CSwitch from '../CSwitch.vue';
+import CModal from '../site/CModal.vue'
 
 const isDarkMode = ref(false);
 const isDisabled = ref(false);
@@ -18,6 +19,7 @@ const isDisabled = ref(false);
                 profile
             </a>
             <CSwitch v-model="isDarkMode" v-model:disabled="isDisabled" selected-label="is dark theme" unselected-label="light theme"></CSwitch>
+            <CModal></CModal>
         </nav>
     </header>
 </template>
