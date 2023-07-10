@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useTodosStore } from '../stores/todos';
-import CSwitch from '../compoments/CSwitch.vue';
+import CSwitch from '../compoments/ui/CSwitch.vue';
 import ProductCard from '../compoments/ProductCard.vue'
 
 const store = useTodosStore();
