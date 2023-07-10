@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue';
-import DarkMode  from './DarkMode.vue'
 
-const isDarkMode = ref(false);
+const onScreen = () => {
+    
+}
+
 </script>
 <template>
     <header>
@@ -13,11 +15,13 @@ const isDarkMode = ref(false);
             <a href="">
                 home
             </a>
-            <a href="">
-                profile
-            </a>
+            <button @click="onScreen">Profile</button>
             </nav>
 
         <div><DarkMode></DarkMode></div>
     </header>
+
+    <div class="absolute backdrop-blur-sm w-[100%] h-[100%] hidden">
+        <div class="py-2 px-2 rounded-lg red-500 absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-180%] border border-black">Name <br> Surname <br> Number</div>
+    </div>
 </template>
