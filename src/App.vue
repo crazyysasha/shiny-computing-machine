@@ -1,13 +1,64 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import CHeader from './compoments/site/CHeader.vue';
+import { onMounted, provide, ref, watch } from 'vue';
 
+import { useMouse } from './composables/mouse'
+
+const products = ref([
+  { name: 'mac' },
+  { name: "Tyoma" }
+]);
+const newProduct = ref('');
+
+provide('products', products);
+
+const { x, y } = useMouse();
+
+const isHolding = ref(false);
+const canva = ref();
+onMounted(() => {
+
+  canva.value.height = window.innerHeight;
+  canva.value.width = window.innerWidth;
+
+  watch([x, y], ([newX, newY], [oldX, oldY]) => {
+    if (oldX == 0 && oldY == 0) {
+      return;
+    } if (!isHolding.value) {
+      return;
+    }
+    const ctx = canva.value.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(newX, newY);
+    ctx.lineTo(oldX, oldY);
+    ctx.strokeStyle = 'red';
+
+    ctx.lineWidth = 3;
+
+    ctx.stroke();
+  });
+
+});
 </script>
 
 <template>
   <CHeader></CHeader>
 
   <RouterView />
+
+  <input type="text" v-model="newProduct" @keyup="products.push(newProduct)">
+  <div>
+    {{ x }}, {{ y }}
+  </div>
+  <ul>
+    <li v-for="{ name } in products">
+      {{ name }}
+    </li>
+  </ul>
+  <canvas ref="canva" class="fixed inset-0 w-full h-screen" @mousedown.left="isHolding = true" @mouseup="isHolding = false">
+
+  </canvas>
 </template>
 
 <style scoped>

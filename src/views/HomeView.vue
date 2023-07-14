@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { useTodosStore } from '../stores/todos';
 import CSwitch from '../compoments/ui/CSwitch.vue';
 import ProductCard from '../compoments/ProductCard.vue'
+import { useMouse } from '../composables/mouse';
 
 const store = useTodosStore();
 const newTodo = ref('');
@@ -34,6 +35,8 @@ function onEnter(el, done) {
 function onAfterEnter(el) {
   console.log('after', el);
 }
+
+useMouse();
 </script>
 
 <template>
